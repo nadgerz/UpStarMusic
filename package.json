@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "electron . & webpack-dev-server"
+    "start": "electron . & webpack-dev-server",
+    "format": "pretty-quick --pattern \"**/*.*(js|jsx|scss|sass|css|json|ts|html)\"",
+    "format:full": "prettier --write \"./**/*.{js,jsx,css,htm,json,ts,html,sass,scss}\""
   },
   "author": "",
   "license": "ISC",
@@ -34,5 +36,9 @@
     "sass-loader": "^4.0.2",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0"
+  },
+  "devDependencies": {
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1"
   }
 }
