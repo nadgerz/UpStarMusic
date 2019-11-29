@@ -1,5 +1,5 @@
-import React from 'react';
-import Header from './Header';
+import React from 'react'
+import Header from './Header'
 
 const Home = ({ children }) => {
   return (
@@ -7,7 +7,7 @@ const Home = ({ children }) => {
       <Header />
       {children}
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

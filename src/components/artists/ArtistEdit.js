@@ -1,41 +1,41 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import * as actions from '../../actions';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import * as actions from '../../actions'
 
 class ArtistEdit extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.state = {};
+    this.state = {}
   }
 
   componentWillMount() {
-    this.props.findArtist(this.props.params.id);
+    this.props.findArtist(this.props.params.id)
   }
 
   componentWillReceiveProps({ artist }) {
     if (artist) {
-      const { name, age, yearsActive, genre } = artist;
+      const { name, age, yearsActive, genre } = artist
 
-      this.setState({ name, age, yearsActive, genre });
+      this.setState({ name, age, yearsActive, genre })
     }
   }
 
   componentWillUpdate(nextProps) {
     if (nextProps.params.id !== this.props.params.id) {
-      this.props.findArtist(nextProps.params.id);
+      this.props.findArtist(nextProps.params.id)
     }
   }
 
   componentWillUnmount() {
-    this.props.clearError();
+    this.props.clearError()
   }
 
   onSubmit(event) {
-    event.preventDefault();
-    event.stopPropagation();
+    event.preventDefault()
+    event.stopPropagation()
 
-    this.props.editArtist(this.props.params.id, this.state);
+    this.props.editArtist(this.props.params.id, this.state)
   }
 
   render() {
@@ -69,20 +69,18 @@ class ArtistEdit extends Component {
             placeholder="Genre"
           />
         </div>
-        <div className="has-error">
-          {this.props.errorMessage}
-        </div>
+        <div className="has-error">{this.props.errorMessage}</div>
         <button className="btn">Submit</button>
       </form>
-    );
+    )
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     artist: state.artists.artist,
-    errorMessage: state.errors
-  };
-};
+    errorMessage: state.errors,
+  }
+}
 
-export default connect(mapStateToProps, actions)(ArtistEdit);
+export default connect(mapStateToProps, actions)(ArtistEdit)

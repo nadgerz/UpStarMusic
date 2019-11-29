@@ -1,22 +1,22 @@
-import _ from 'lodash';
-import React, { Component } from 'react';
-import { Link } from 'react-router';
-import { connect } from 'react-redux';
-import Paginator from './Paginator';
-import * as actions from '../../actions';
+import _ from 'lodash'
+import React, { Component } from 'react'
+import { Link } from 'react-router'
+import { connect } from 'react-redux'
+import Paginator from './Paginator'
+import * as actions from '../../actions'
 
 class ArtistIndex extends Component {
   onChange(_id) {
     if (_.contains(this.props.selection, _id)) {
-      this.props.deselectArtist(_id);
+      this.props.deselectArtist(_id)
     } else {
-      this.props.selectArtist(_id);
+      this.props.selectArtist(_id)
     }
   }
 
   renderList(artist) {
-    const { _id } = artist;
-    const classes = `collection-item avatar ${artist.retired && 'retired'}`;
+    const { _id } = artist
+    const classes = `collection-item avatar ${artist.retired && 'retired'}`
 
     return (
       <li className={classes} key={_id}>
@@ -41,27 +41,29 @@ class ArtistIndex extends Component {
           </p>
         </div>
         <Link to={`artists/${artist._id}`} className="secondary-content">
-           <i className="material-icons">play_arrow</i>
-         </Link>
+          <i className="material-icons">play_arrow</i>
+        </Link>
       </li>
-    );
+    )
   }
 
   renderPaginator() {
     if (this.props.artists.all.length) {
-      return <Paginator />;
+      return <Paginator />
     }
   }
 
   renderEmptyCollection() {
-    if (this.props.artists.all.length) { return; }
+    if (this.props.artists.all.length) {
+      return
+    }
 
     return (
       <div className="center-align">
         <h5>No records found!</h5>
         <div>Try searching again</div>
       </div>
-    );
+    )
   }
 
   renderRetire() {
@@ -81,7 +83,7 @@ class ArtistIndex extends Component {
             Unretire
           </button>
         </div>
-      );
+      )
     }
   }
 
@@ -96,10 +98,10 @@ class ArtistIndex extends Component {
 
         {this.renderPaginator()}
       </div>
-    );
+    )
   }
 }
 
-const mapStateToProps = ({ artists, selection }) => ({ artists, selection });
+const mapStateToProps = ({ artists, selection }) => ({ artists, selection })
 
-export default connect(mapStateToProps, actions)(ArtistIndex);
+export default connect(mapStateToProps, actions)(ArtistIndex)

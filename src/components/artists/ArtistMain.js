@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import ArtistFilter from './ArtistFilter';
-import ArtistIndex from './ArtistIndex';
+import React, { Component } from 'react'
+import ArtistFilter from './ArtistFilter'
+import ArtistIndex from './ArtistIndex'
 
 class ArtistMain extends Component {
   render() {
@@ -13,8 +13,8 @@ class ArtistMain extends Component {
           <ArtistIndex />
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default ArtistMain;
+export default ArtistMain
