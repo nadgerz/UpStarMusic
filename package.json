@@ -6,7 +6,11 @@
   "scripts": {
     "start": "electron . & webpack-dev-server",
     "format": "pretty-quick --pattern \"**/*.*(js|jsx|scss|sass|css|json|ts|html)\"",
-    "format:full": "prettier --write \"./**/*.{js,jsx,css,htm,json,ts,html,sass,scss}\""
+    "format:full": "prettier --write \"./**/*.{js,jsx,css,htm,json,ts,html,sass,scss}\"",
+    "lint": "eslint \"**/*.{js,jsx}\" --quiet",
+    "test": "npm run test:mocha",
+    "test:mocha:min": "nodemon --exec 'mocha -R min --exit'",
+    "test:mocha": "nodemon --exec 'mocha --exit'"
   },
   "author": "",
   "license": "ISC",
@@ -38,6 +42,12 @@
     "webpack-dev-server": "1.14.0"
   },
   "devDependencies": {
+    "eslint": "^6.7.1",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "husky": "^3.1.0",
+    "mocha": "^6.2.2",
+    "nodemon": "^2.0.1",
     "prettier": "1.19.1",
     "pretty-quick": "2.0.1"
   }
