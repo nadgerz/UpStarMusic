@@ -1,7 +1,9 @@
 /* eslint-disable sort-keys */
 const mongoose = require('mongoose')
 const { Schema } = mongoose
-const { ObjectId } = Schema.Types
+// const { ObjectId } = Schema.Types
+
+const AlbumSchema = require('./album')
 
 const MIN_NAME_LENGTH = 2
 
@@ -46,18 +48,8 @@ const ArtistSchema = Schema({
   retired: {
     type: Boolean,
   },
-  albums: [
-    {
-      type: ObjectId,
-      ref: 'album',
-    },
-  ],
+  albums: [AlbumSchema],
 })
-
-// eslint-disable-next-line prefer-arrow-callback
-// ArtistSchema.virtual('postCount').get(function() {
-//   return this.posts.length
-// })
 
 ArtistSchema.pre('deleteOne', { document: true, query: false }, function(next) {
   const Album = mongoose.model('album')
