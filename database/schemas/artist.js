@@ -3,12 +3,14 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose
 const { ObjectId } = Schema.Types
 
+const MIN_NAME_LENGTH = 2
+
 const ArtistSchema = Schema({
   name: {
     type: String,
     validate: {
-      validator: name => name.length > MIN_NAME_LENGTH,
-      message: `Name must be longer than ${MIN_NAME_LENGTH} characters.`,
+      validator: name => name.length >= MIN_NAME_LENGTH,
+      message: `Name must be longer than ${MIN_NAME_LENGTH - 1} characters.`,
     },
     required: [true, 'Name is required'],
   },
@@ -25,6 +27,24 @@ const ArtistSchema = Schema({
       validator: age => age > 0,
       message: `Age must be > 0.`,
     },
+  },
+  image: {
+    type: String,
+  },
+  genre: {
+    type: String,
+  },
+  website: {
+    type: String,
+  },
+  netWorth: {
+    type: Number,
+  },
+  labelName: {
+    type: String,
+  },
+  retired: {
+    type: Boolean,
   },
   albums: [
     {
