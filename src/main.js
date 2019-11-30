@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore, applyMiddleware } from 'redux'
+import { applyMiddleware, createStore } from 'redux'
 import { Provider } from 'react-redux'
 import ReduxThunk from 'redux-thunk'
 import { Db, Server } from 'mongodb'
@@ -24,7 +24,13 @@ const App = () => {
 const db = new Db('upstar_music', new Server('localhost', 27017))
 db.open().then(() => {
   window.db = db
-  mongoose.connect('mongodb://localhost/upstar_music')
+  mongoose.connect('mongodb://localhost/upstar_music', {
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+
   mongoose.connection
     .once('open', () => {
       ReactDOM.render(<App />, document.getElementById('root'))
