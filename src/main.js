@@ -16,6 +16,8 @@ import Routes from './router'
 
 mongoose.Promise = Promise
 
+mongoose.set('debug', true)
+
 const App = () => {
   const store = createStore(reducers, {}, applyMiddleware(ReduxThunk))
 
