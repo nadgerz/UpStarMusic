@@ -1,13 +1,18 @@
+/* eslint-disable sort-keys, sort-imports */
 import React from 'react'
 import ReactDOM from 'react-dom'
+
+import ReduxThunk from 'redux-thunk'
 import { applyMiddleware, createStore } from 'redux'
 import { Provider } from 'react-redux'
-import ReduxThunk from 'redux-thunk'
+
+import mongoose from 'mongoose'
 import { Db, Server } from 'mongodb'
+
+import './seeds'
+
 import reducers from './reducers'
 import Routes from './router'
-import mongoose from 'mongoose'
-import './seeds'
 
 mongoose.Promise = Promise
 
@@ -21,7 +26,9 @@ const App = () => {
   )
 }
 
-const db = new Db('upstar_music', new Server('localhost', 27017))
+const DEFAULT_PORT = 27017
+const db = new Db('upstar_music', new Server('localhost', DEFAULT_PORT))
+
 db.open().then(() => {
   window.db = db
   mongoose.connect('mongodb://localhost/upstar_music', {
