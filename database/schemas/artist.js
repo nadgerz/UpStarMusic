@@ -51,10 +51,12 @@ const ArtistSchema = Schema({
   albums: [AlbumSchema],
 })
 
+/*
 ArtistSchema.pre('deleteOne', { document: true, query: false }, function(next) {
-  const Album = mongoose.model('album')
+  const Album = mongoose.model('album');
 
-  Album.deleteMany({ _id: { $in: this.albums } }).then(() => next())
-})
+  Album.deleteMany({ _id: { $in: this.albums } }).then(() => next());
+});
+*/
 
 module.exports = ArtistSchema

@@ -1,7 +1,7 @@
 /* eslint-disable sort-keys */
 const mongoose = require('mongoose')
 const { Schema } = mongoose
-const { ObjectId } = Schema.Types
+// const { ObjectId } = Schema.Types;
 
 const AlbumSchema = Schema({
   title: {
@@ -11,7 +11,7 @@ const AlbumSchema = Schema({
   date: {
     type: Date,
   },
-  copiedSold: {
+  copiesSold: {
     type: Number,
     validate: {
       validator: copiedSold => copiedSold > -1,
@@ -37,27 +37,6 @@ const AlbumSchema = Schema({
     },
     default: 0,
   },
-  revenur: {
-    type: String,
-  },
-  website: {
-    type: String,
-  },
-  netWorth: {
-    type: Number,
-  },
-  labelName: {
-    type: String,
-  },
-  retired: {
-    type: Boolean,
-  },
-  albums: [
-    {
-      type: ObjectId,
-      ref: 'album',
-    },
-  ],
 })
 
 module.exports = AlbumSchema

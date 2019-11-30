@@ -1,5 +1,8 @@
+/* eslint-disable sort-keys */
 const mongoose = require('mongoose')
 
 const ArtistSchema = require('../schemas/artist')
 
-module.exports = ArtistModel = mongoose.model('artist', ArtistSchema)
+const ArtistModel = mongoose.model('artist', ArtistSchema)
+
+module.exports = ArtistModel
