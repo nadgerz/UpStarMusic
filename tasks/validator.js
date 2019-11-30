@@ -1,8 +1,12 @@
+/* eslint-disable id-length */
 const Mongo = require('mongodb')
 
 const { Db, Server } = Mongo
 
-const db = new Db('artists', new Server('localhost', 27017))
+const DEFAULT_PORT = 27017
+
+const db = new Db('artists', new Server('localhost', DEFAULT_PORT))
+
 db.open().then(() => {
   db.command({
     collMod: 'artists',

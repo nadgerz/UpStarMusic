@@ -1,3 +1,4 @@
+/* eslint-disable */
 import _ from 'lodash'
 import faker from 'faker'
 import { Db, Server } from 'mongodb'
@@ -6,8 +7,12 @@ import { GENRES } from './constants'
 const MINIMUM_ARTISTS = 2
 const ARTISTS_TO_ADD = 15
 
+const DEFAULT_PORT = 27017
+
 let artistsCollection
-const db = new Db('upstar_music', new Server('localhost', 27017))
+
+const db = new Db('upstar_music', new Server('localhost', DEFAULT_PORT))
+
 db.open()
   .then(() => {
     artistsCollection = db.collection('artists')
