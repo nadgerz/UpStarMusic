@@ -29,13 +29,15 @@ module.exports = async () => {
   const minPromise = Artist.find({})
     .sort({ age: 1 })
     .limit(1)
+    .then(artists => artists[0].age)
 
   const maxPromise = Artist.find({})
     .sort({ age: -1 })
     .limit(1)
+    .then(artists => artists[0].age)
 
   return Promise.all([minPromise, maxPromise]).then(data => {
-    // console.log(data)
+    console.log(data)
 
     const minMaxAge = {
       min: data[0][0].age,

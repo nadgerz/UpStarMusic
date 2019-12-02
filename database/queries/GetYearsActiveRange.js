@@ -28,13 +28,16 @@ module.exports = async () => {
   const minPromise = Artist.find({})
     .sort({ yearsActive: 1 })
     .limit(1)
+    .then(artists => artists[0].yearsActive)
 
   const maxPromise = Artist.find({})
     .sort({ yearsActive: -1 })
     .limit(1)
+    .then(artists => artists[0].yearsActive)
 
   return Promise.all([minPromise, maxPromise]).then(data => {
-    // console.log(data)
+    console.log(data)
+
     const minMaxYearsActive = {
       min: data[0][0].yearsActive,
       max: data[1][0].yearsActive,
