@@ -1,11 +1,13 @@
 {
+  "root": true,
   "extends": [
     "eslint:recommended",
     "plugin:import/errors",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",
-    "prettier",
-    "prettier/react"
+    "plugin:prettier/recommended",
+    "prettier/react",
+    "prettier"
   ],
   "rules": {
     "react/prop-types": 0,
@@ -14,19 +16,21 @@
     "react-hooks/rules-of-hooks": 2,
     "react-hooks/exhaustive-deps": 1
   },
-  "plugins": ["react", "import", "jsx-a11y", "react-hooks"],
+  "plugins": ["react", "import", "jsx-a11y", "react-hooks", "prettier"],
   "parser": "babel-eslint",
   "parserOptions": {
-    "ecmaVersion": 2018,
+    "ecmaVersion": 2020,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
     }
   },
   "env": {
-    "es6": true,
+    "es2020": true,
     "browser": true,
-    "node": true
+    "node": true,
+    "mocha": true,
+    "mongo": true
   },
   "settings": {
     "react": {
