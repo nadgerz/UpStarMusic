@@ -9,6 +9,7 @@ const Artist = require('../models/artist')
  * containing the min and max ages, like { min: 16, max: 45 }.
  */
 module.exports = async () => {
+  /*
   const minModel = await Artist.find({})
     .sort({ age: 1 })
     .limit(1)
@@ -23,6 +24,7 @@ module.exports = async () => {
 
   console.log(min)
   console.log(max)
+  */
 
   const minPromise = Artist.find({})
     .sort({ age: 1 })
@@ -32,28 +34,16 @@ module.exports = async () => {
     .sort({ age: -1 })
     .limit(1)
 
-  return Promise.all([minPromise, maxPromise]).then(wtf => {
-    console.log(wtf)
+  return Promise.all([minPromise, maxPromise]).then(data => {
+    // console.log(data)
+
     const minMaxAge = {
-      min: wtf[0][0].age,
-      max: wtf[1][0].age,
+      min: data[0][0].age,
+      max: data[1][0].age,
     }
 
-    console.log(minMaxAge)
+    // console.log(minMaxAge)
 
     return minMaxAge
-
-    /*
-		return {
-			min: wtf[0].age,
-			max: wtf[1].age
-		}
-		*/
   })
-
-  /*
-	return new Promise().then(() => {
-		resolve( { min: 0, max: 14 } )
-	})
-	*/
 }
