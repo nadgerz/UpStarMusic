@@ -9,9 +9,6 @@ const Artist = require('../models/artist')
  * containing the min and max yearsActive, like { min: 0, max: 14 }.
  */
 module.exports = async () => {
-  // const artists = await Artist.find( {}).sort( {yearsActive: 1} )
-  // console.log( artists )
-
   const minModel = await Artist.find({})
     .sort({ yearsActive: 1 })
     .limit(1)
@@ -27,9 +24,23 @@ module.exports = async () => {
   console.log(min)
   console.log(max)
 
-  /*
-	return new Promise().then(() => {
-		resolve( { min: 0, max: 14 } )
-	})
-	*/
+  const minPromise = Artist.find({})
+    .sort({ yearsActive: 1 })
+    .limit(1)
+
+  const maxPromise = Artist.find({})
+    .sort({ yearsActive: -1 })
+    .limit(1)
+
+  return Promise.all([minPromise, maxPromise]).then(wtf => {
+    console.log(wtf)
+    const minMaxYearsActive = {
+      min: wtf[0][0].yearsActive,
+      max: wtf[1][0].yearsActive,
+    }
+
+    console.log(minMaxYearsActive)
+
+    return minMaxYearsActive
+  })
 }
