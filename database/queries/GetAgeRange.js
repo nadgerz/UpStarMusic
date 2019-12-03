@@ -9,15 +9,13 @@ const Artist = require('../models/artist')
  * containing the min and max ages, like { min: 16, max: 45 }.
  */
 const promise = (order = 1) => {
-  const promise = Artist.find({})
+  return Artist.find({})
     .sort({ age: order })
     .limit(1)
     .then(artists => artists[0].age)
-
-  return promise
 }
 
-module.exports = async () => {
+const getAgeRange = async () => {
   const min = await promise()
   const max = await promise(-1)
 
@@ -26,3 +24,5 @@ module.exports = async () => {
     max,
   }
 }
+
+module.exports = () => getAgeRange()
