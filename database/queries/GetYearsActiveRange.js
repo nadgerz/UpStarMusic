@@ -8,42 +8,37 @@ const Artist = require('../models/artist')
  * @return {promise} A promise that resolves with an object
  * containing the min and max yearsActive, like { min: 0, max: 14 }.
  */
+const promise = (order = 1) => {
+  const promise = Artist.find({})
+    .sort({ yearsActive: order })
+    .limit(1)
+    .then(artists => artists[0].yearsActive)
+
+  return promise
+}
+
 module.exports = async () => {
-  /*
-  const minModel = await Artist.find({})
-    .sort({ yearsActive: 1 })
-    .limit(1)
-  console.log(minModel)
-  const min = minModel[0].yearsActive
-
-  const maxModel = await Artist.find({})
-    .sort({ yearsActive: -1 })
-    .limit(1)
-  console.log(maxModel)
-  const max = maxModel[0].yearsActive
-
-  console.log(min)
-  console.log(max)
-  */
-  const minPromise = Artist.find({})
+  let minPromise = Artist.find({})
     .sort({ yearsActive: 1 })
     .limit(1)
     .then(artists => artists[0].yearsActive)
 
-  const maxPromise = Artist.find({})
+  minPromise = promise()
+
+  let maxPromise = Artist.find({})
     .sort({ yearsActive: -1 })
     .limit(1)
     .then(artists => artists[0].yearsActive)
+
+  maxPromise = promise(-1)
 
   return Promise.all([minPromise, maxPromise]).then(data => {
     console.log(data)
 
     const minMaxYearsActive = {
-      min: data[0][0].yearsActive,
-      max: data[1][0].yearsActive,
+      min: data[0],
+      max: data[1],
     }
-
-    // console.log(minMaxYearsActive)
 
     return minMaxYearsActive
   })
