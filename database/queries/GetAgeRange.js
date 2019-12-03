@@ -18,15 +18,11 @@ const promise = (order = 1) => {
 }
 
 module.exports = async () => {
-  const minPromise = promise()
-  const maxPromise = promise(-1)
+  const min = await promise()
+  const max = await promise(-1)
 
-  return Promise.all([minPromise, maxPromise]).then(data => {
-    const [min, max] = data
-
-    return {
-      min,
-      max,
-    }
-  })
+  return {
+    min,
+    max,
+  }
 }
